@@ -18,7 +18,7 @@ comments = false
 {{< /alert >}}
 </div>
 
-<script id="show-nofitication">
+<script id="show-notification">
 ;(() => {
   window.addEventListener('load', () => {
     ~document.querySelector('meta[name=author]').content.indexOf('Wooseop') &&
