@@ -2,15 +2,17 @@
 title = "<% title %>"
 date = "<% date %>"
 coverImage = "<% thumbnail %>"
+thumbnailImage = "<% thumbnail %>"
 coverMeta = "in"
-autoThumbnailImage = "yes"
 thumbnailImagePosition = "right"
 categories = ["<% category %>"]
 tags = [<% tags %>]
 comments = false
 +++
 
+<div class="brunch">
 <% content %>
+</div>
 
 <div id="notice" style="display: none;">
 {{< alert info >}}
