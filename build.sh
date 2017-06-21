@@ -3,18 +3,17 @@
 dotenv () {
   echo "Reading .env variables..." &&
     eval "$(cat .env)" &&
-    [ -n "$BRUNCHFEED_TEMPLATE_FILE" ] &&
-    BRUNCHFEED_TEMPLATE="$(cat $BRUNCHFEED_TEMPLATE_FILE)"
+    test "$BRUNCHFEED_TEMPLATE_FILE" &&
+    BRUNCHFEED_TEMPLATE="$(cat $BRUNCHFEED_TEMPLATE_FILE)" || true
 }
 
 gopath () {
   echo "Verifying GOPATH..." &&
-    [ -z $GOPATH ] &&
-    export GOPATH=$(go env GOPATH)
+    export GOPATH="$(go env GOPATH)"
 }
 
 build () {
-  (cd $GOPATH/src/github.com/linterpreteur/brunchfeed &&
+  (cd "$GOPATH/src/github.com/linterpreteur/brunchfeed" &&
 
     echo "Fetching Brunch RSS feed..." &&
       go run main.go fetch \
