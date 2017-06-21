@@ -55,7 +55,7 @@ func path(base string, slug string) string {
 		log.Fatal(err)
 	}
 
-	f := absPath + slug + ".md"
+	f := filepath.Join(absPath, slug+".md")
 	return f
 }
 
