@@ -45,7 +45,7 @@ func main() {
 		buffer.WriteString(newline)
 		for command := range actionMap {
 			buffer.WriteString(newline)
-			buffer.WriteString("\tgo run main.go ")
+			buffer.WriteString("\tbrunchfeed ")
 			buffer.WriteString(command)
 		}
 		buffer.WriteString(newline)

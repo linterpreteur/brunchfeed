@@ -7,21 +7,14 @@ dotenv () {
     BRUNCHFEED_TEMPLATE="$(cat $BRUNCHFEED_TEMPLATE_FILE)" || true
 }
 
-gopath () {
-  echo "Verifying GOPATH..." &&
-    export GOPATH="$(go env GOPATH)"
-}
-
 build () {
-  (cd "$GOPATH/src/github.com/linterpreteur/brunchfeed" &&
-
-    echo "Fetching Brunch RSS feed..." &&
-      go run main.go fetch \
+  (echo "Fetching Brunch RSS feed..." &&
+      brunchfeed fetch \
         -id "$BRUNCHFEED_BRUNCH_ID" \
         -src "$BRUNCHFEED_DATA_PATH" &&
 
     echo "Building posts data..." &&
-      go run main.go build \
+      brunchfeed build \
         -src "$BRUNCHFEED_DATA_PATH" \
         -dest "$BRUNCHFEED_POST_PATH" \
         -template "$BRUNCHFEED_TEMPLATE" &&
@@ -31,4 +24,4 @@ build () {
 }
 
 
-dotenv && gopath && build
+dotenv && build

@@ -92,9 +92,14 @@ func inject(template string, item brunchfeed.Item) string {
 		"category":  item.Meta.Category,
 		"tags":      "\"" + strings.Join(item.Meta.Tags, "\", \"") + "\"",
 		"summary":   item.Body.Summary,
-		"content":   item.Body.Content,
+		"content":   transform(item.Body.Content),
 		"link":      item.Meta.Link,
 	})
+}
+
+func transform(raw string) string {
+	br := regexp.MustCompile("<br */?>")
+	return br.ReplaceAllString(raw, "")
 }
 
 func replaceAll(s string, m map[string]string) string {
